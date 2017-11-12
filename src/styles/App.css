@@ -43,7 +43,7 @@ button {
   border-style: solid;
   border-color: lightskyblue;
   border-radius: 10px;
-
+  margin: 2vw;
 }
 
 .panel-default>.panel-heading {

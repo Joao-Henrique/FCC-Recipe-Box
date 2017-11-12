@@ -130,8 +130,8 @@ class App extends Component {
           <h2 className="App-title">FCC Recipe Box by João Henrique</h2>
         </header>
 
-        <div className="container row">
-          <div className="col-md-6">
+        <div className=" row">
+          <div className="col-md-6 projectSection">
             <h1>The Best Recipes In Town</h1>
 
             {/* ACCORDION FOR THE STORED RECIPES */}
@@ -144,6 +144,7 @@ class App extends Component {
                     eventKey={index}
                     key={index}>
                     <div>
+                      <h4>Ingredients:</h4>
                       {recipe
                         .ingredients
                         .map((ingredient, index) => (
