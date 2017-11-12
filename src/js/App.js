@@ -117,6 +117,7 @@ class App extends Component {
     let recipes = JSON.parse(localStorage.getItem("recipes"));
     this.setState({recipes});
     console.log(recipes);
+    console.log(this.state);
   }
 
   //////////////////////////////////////////////////////////////////////
@@ -129,91 +130,103 @@ class App extends Component {
           <h2 className="App-title">FCC Recipe Box by João Henrique</h2>
         </header>
 
-        <div className="container">
-          <h1>The Best Recipes In Town</h1>
+        <div className="container row">
+          <div className="col-md-6">
+            <h1>The Best Recipes In Town</h1>
 
-          {/* ACCORDION FOR THE STORED RECIPES */}
-          <Accordion>
-            {recipes.map((recipe, index) => (
-              <Panel header={recipe.recipeName} eventKey={index} key={index}>
-                <ol>
-                  {recipe
-                    .ingredients
-                    .map((ingredient, index) => (
-                      <li key={index}>
-                        {ingredient}
-                      </li>
-                    ))}
-                </ol>
-                <ButtonToolbar>
-                  <Button bsStyle="danger" onClick={(event) => this.deleteRecipe(index)}>Delete Recipe</Button>
-                  <Button bsStyle="warning" onClick={(event) => this.open("showEdit", index)}>Edit Recipe</Button>
-                </ButtonToolbar>
-              </Panel>
-            ))}
+            {/* ACCORDION FOR THE STORED RECIPES */}
+            <div class="wraper">
+              <Accordion className="accordion">
+                {recipes.map((recipe, index) => (
+                  <Panel
+                    className="panel"
+                    header={recipe.recipeName}
+                    eventKey={index}
+                    key={index}>
+                    <div>
+                      {recipe
+                        .ingredients
+                        .map((ingredient, index) => (
+                          <div className="list-group-item" key={index}>
+                            {ingredient}
+                          </div>
+                        ))}
+                    </div>
+                    <ButtonToolbar>
+                      <Button bsStyle="danger" onClick={(event) => this.deleteRecipe(index)}>Delete Recipe</Button>
+                      <Button bsStyle="warning" onClick={(event) => this.open("showEdit", index)}>Edit Recipe</Button>
+                    </ButtonToolbar>
+                  </Panel>
+                ))}
+              </Accordion>
+            </div>
 
-          </Accordion>
+            {/* MODAL TO EDIT RECIPE */}
+            <Modal show={this.state.showEdit} onHide={this.close}>
+              <Modal.Header closeButton>
+                <Modal.Title>Edit Recipe</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <FormGroup controlId="formBasicText">
+                  <ControlLabel>Recipe Name</ControlLabel>
+                  <FormControl
+                    type="text"
+                    value={localStorage.recipes[currentIndex].recipeName}
+                    placeholder="Enter recipe name"
+                    onChange={(event) => this.updateRecipeName(event.target.value, currentIndex)}></FormControl>
+                </FormGroup>
+                <FormGroup controlId="formControlsTextarea">
+                  <ControlLabel>Ingredients</ControlLabel>
+                  <FormControl
+                    type="textarea"
+                    value={recipes.ingredients}
+                    componentClass="textarea"
+                    onChange={(event) => this.updateIngredients(event.target.value.split(","), currentIndex)}></FormControl>
+                </FormGroup>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button bsStyle="success" onClick={(event) => this.saveNewRecipe()}>Save Recipe</Button>
+                <Button bsStyle="danger" onClick={(event) => this.close()}>Cancel</Button>
+              </Modal.Footer>
+            </Modal>
 
-          {/* MODAL TO EDIT RECIPE */}
-          <Modal show={this.state.showEdit} onHide={this.close}>
-            <Modal.Header closeButton>
-              <Modal.Title>Edit Recipe</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <FormGroup controlId="formBasicText">
-                <ControlLabel>Recipe Name</ControlLabel>
-                <FormControl
-                  type="text"
-                  value={recipes.recipeName}
-                  placeholder="Enter recipe name"
-                  onChange={(event) => this.updateRecipeName(event.target.value, currentIndex)}></FormControl>
-              </FormGroup>
-              <FormGroup controlId="formControlsTextarea">
-                <ControlLabel>Ingredients</ControlLabel>
-                <FormControl
-                  type="textarea"
-                  value={recipes.ingredients}
-                  componentClass="textarea"
-                  onChange={(event) => this.updateIngredients(event.target.value.split(","), currentIndex)}></FormControl>
-              </FormGroup>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button bsStyle="success" onClick={(event) => this.saveNewRecipe()}>Save Recipe</Button>
-              <Button bsStyle="danger" onClick={(event) => this.close()}>Cancel</Button>
-            </Modal.Footer>
-          </Modal>
-
-          {/* MODAL TO ADD NEW RECIPE */}
-          <Modal show={this.state.showAdd} onHide={this.close}>
-            <Modal.Header closeButton>
-              <Modal.Title>Add Recipe</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <FormGroup controlId="formBasicText">
-                <ControlLabel>Recipe Name</ControlLabel>
-                <FormControl
-                  type="text"
-                  value={newestRecipe.recipeName}
-                  placeholder="Enter recipe name"
-                  onChange={(event) => this.updateNewRecipe(event.target.value, this.state.ingredients)}></FormControl>
-              </FormGroup>
-              <FormGroup controlId="formControlsTextarea">
-                <ControlLabel>Ingredients</ControlLabel>
-                <FormControl
-                  type="textarea"
-                  value={newestRecipe.ingredients}
-                  placeholder='Enter ingredients separated by ","'
-                  onChange={(event) => this.updateNewRecipe(newestRecipe.recipeName, event.target.value.split(","))}></FormControl>
-              </FormGroup>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button bsStyle="success" onClick={(event) => this.saveNewRecipe()}>Save Recipe</Button>
-              <Button bsStyle="danger" onClick={(event) => this.close()}>Cancel</Button>
-            </Modal.Footer>
-          </Modal>
-          <Button
-            bsStyle="success"
-            onClick={(event) => this.open("showAdd", currentIndex)}>Add New Recipe</Button>
+            {/* MODAL TO ADD NEW RECIPE */}
+            <Modal show={this.state.showAdd} onHide={this.close}>
+              <Modal.Header closeButton>
+                <Modal.Title>Add Recipe</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <FormGroup controlId="formBasicText">
+                  <ControlLabel>Recipe Name</ControlLabel>
+                  <FormControl
+                    type="text"
+                    value={newestRecipe.recipeName}
+                    placeholder="Enter recipe name"
+                    onChange={(event) => this.updateNewRecipe(event.target.value, this.state.ingredients)}></FormControl>
+                </FormGroup>
+                <FormGroup controlId="formControlsTextarea">
+                  <ControlLabel>Ingredients</ControlLabel>
+                  <FormControl
+                    type="textarea"
+                    value={newestRecipe.ingredients}
+                    placeholder='Enter ingredients separated by ","'
+                    onChange={(event) => this.updateNewRecipe(newestRecipe.recipeName, event.target.value.split(","))}></FormControl>
+                </FormGroup>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button bsStyle="success" onClick={(event) => this.saveNewRecipe()}>Save Recipe</Button>
+                <Button bsStyle="danger" onClick={(event) => this.close()}>Cancel</Button>
+              </Modal.Footer>
+            </Modal>
+            <Button
+              bsStyle="success"
+              onClick={(event) => this.open("showAdd", currentIndex)}>Add New Recipe</Button>
+          </div>
+          <div className="col-md-6">
+            <div className="aboutSection">
+              <h1>About this project</h1>
+            </div>
+          </div>
         </div>
       </div>
     );
