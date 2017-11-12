@@ -105,18 +105,19 @@ class App extends Component {
   /////////////////////////////////////////////////////////////
 
   componentWillMount() {
-    localStorage.setItem("recipes", JSON.stringify([
-      {
-        "recipeName": "Bolonhesa",
-        "ingredients": ["one", "two", "thre"]
+    this.setState({
+      recipe: {
+        recipeName: "Bolonhesa",
+        ingredients: ["one", "two", "thre"]
       }
-    ]));
+    })
   }
 
-  /* componentDidMount() {
+  componentDidMount() {
     let recipes = JSON.parse(localStorage.getItem("recipes"));
     this.setState({recipes});
-  } */
+    console.log(recipes);
+  }
 
   //////////////////////////////////////////////////////////////////////
   render() {
