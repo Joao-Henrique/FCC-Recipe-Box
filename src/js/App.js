@@ -225,19 +225,21 @@ class App extends Component {
               onClick={(event) => this.open("showAdd", currentIndex)}>Add New Recipe</Button>
           </div>
 
+          {/* PROJECT DESCRIPTION */}
           <div className="col-md-6 information">
             <h2>Project description:</h2>
             <h5>Recipe Box is a Project made for
               <a href="https://www.freecodecamp.org/" target="blank">FreeCodeCamp's</a>
               Data Visualization Certification using React. You can add, edit and delete
               recipes. The recipes are stored in the browser's local storage so you can
-              restart the browser and they wont desapear.
+              restart the browser and they won't disapear.
             </h5>
             <h2>Project date:</h2>
             <h5>November 2017</h5>
           </div>
         </div>
 
+        {/* FOOTER */}
         <footer>
           <div className=" footer row ">
             <div className="col-md-6 socialFooter ">
@@ -247,6 +249,7 @@ class App extends Component {
                     <i>|</i>
                   </a>
                 </li>
+                {/* PORTFOLIO */}
                 <li>
                   <a
                     className="socialIcon "
@@ -256,6 +259,7 @@ class App extends Component {
                     <i className="fa fa-home "></i>
                   </a>
                 </li>
+                {/* FACEBOOK */}
                 <li>
                   <a
                     className="socialIcon "
@@ -265,6 +269,7 @@ class App extends Component {
                     <i className="fa fa-facebook "></i>
                   </a>
                 </li>
+                {/* LINKEDIN */}
                 <li>
                   <a
                     className="socialIcon "
@@ -274,6 +279,7 @@ class App extends Component {
                     <i className="fa fa-linkedin "></i>
                   </a>
                 </li>
+                {/* CODEPEN */}
                 <li>
                   <a
                     className="socialIcon "
@@ -283,7 +289,7 @@ class App extends Component {
                     <i className="fa fa-codepen "></i>
                   </a>
                 </li>
-
+                {/* GLITCH */}
                 <li>
                   <a
                     className="socialIcon "
@@ -293,7 +299,7 @@ class App extends Component {
                     <i className="fa fa-rocket "></i>
                   </a>
                 </li>
-
+                {/* GITHUB */}
                 <li>
                   <a
                     className="socialIcon "
@@ -301,6 +307,16 @@ class App extends Component {
                     target="blank"
                     title="Github ">
                     <i className="fa fa-github "></i>
+                  </a>
+                </li>
+                {/* STACK OVERFLOW */}
+                <li>
+                  <a
+                    className="socialIcon "
+                    href="https://github.com/Joao-Henrique "
+                    target="blank"
+                    title="Stack Overflow ">
+                    <i class="fa fa-stack-overflow "></i>
                   </a>
                 </li>
                 <li className="separator">
@@ -311,7 +327,9 @@ class App extends Component {
               </ul>
             </div>
             <div className="col-md-6 authorFooter ">
-              <h6>&copy João Henrique 2017</h6>
+              <h6>
+                <i className="fa fa-copyright "></i>
+                João Henrique 2017</h6>
             </div>
           </div>
         </footer>
