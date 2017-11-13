@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import logo from "../img/logo.svg";
-import "../styles/App.css";
 import Accordion from "react-bootstrap/lib/Accordion";
 import Panel from "react-bootstrap/lib/Panel";
 import Button from "react-bootstrap/lib/Button";
@@ -135,7 +134,8 @@ class App extends Component {
           <div className="col-md-6 projectSection">
 
             {/* ACCORDION FOR THE STORED RECIPES */}
-            <div class="wraper">
+            <div className="wraper">
+              <h3>Recipe Box</h3>
               <Accordion className="accordion">
                 {recipes.map((recipe, index) => (
                   <Panel
@@ -220,101 +220,97 @@ class App extends Component {
               </Modal.Footer>
             </Modal>
             <Button
+              className="addNewRecipeButton"
               bsStyle="success"
               onClick={(event) => this.open("showAdd", currentIndex)}>Add New Recipe</Button>
           </div>
-          <div class="col-md-6 information">
+
+          <div className="col-md-6 information">
             <h2>Project description:</h2>
-            <h5>JavaScript Calculator is a Project made for
+            <h5>Recipe Box is a Project made for
               <a href="https://www.freecodecamp.org/" target="blank">FreeCodeCamp's</a>
-              FrontEnd Certification using HTML, CSS, jQuery and JavaScript. You can use it
-              like you would use a normal calculator.
+              Data Visualization Certification using React. You can add, edit and delete
+              recipes. The recipes are stored in the browser's local storage so you can
+              restart the browser and they wont desapear.
             </h5>
             <h2>Project date:</h2>
-            <h5>March 2017</h5>
+            <h5>November 2017</h5>
           </div>
         </div>
+
         <footer>
-          <div class=" footer row ">
-            <div class="col-md-6 socialFooter ">
-              <ul class="social-network social-circle ">
-                <li class="separatorHidden">
-                  <a class="socialIcon">
+          <div className=" footer row ">
+            <div className="col-md-6 socialFooter ">
+              <ul className="social-network social-circle ">
+                <li className="separatorHidden">
+                  <a className="socialIcon">
                     <i>|</i>
                   </a>
                 </li>
-
                 <li>
                   <a
-                    class="socialIcon "
+                    className="socialIcon "
                     href="https://joao-henrique.github.io/JH-Portfolio/"
                     target="blank"
                     title="Portfolio">
-                    <i class="fa fa-home "></i>
+                    <i className="fa fa-home "></i>
                   </a>
                 </li>
-
                 <li>
                   <a
-                    class="socialIcon "
+                    className="socialIcon "
                     href="https://www.facebook.com/ljoaohenriquel "
                     target="blank"
-                    class="icoFacebook
-                    "
                     title="Facebook ">
-                    <i class="fa fa-facebook "></i>
+                    <i className="fa fa-facebook "></i>
                   </a>
                 </li>
-
                 <li>
                   <a
-                    class="socialIcon "
+                    className="socialIcon "
                     href="https://www.linkedin.com/feed/?trk="
                     target="blank"
-                    class=" icoLinkedin "
                     title="Linkedin ">
-                    <i class="fa fa-linkedin "></i>
+                    <i className="fa fa-linkedin "></i>
                   </a>
                 </li>
-
                 <li>
                   <a
-                    class="socialIcon "
+                    className="socialIcon "
                     href="https://codepen.io/Joao_Henrique/"
                     target="blank"
                     title="Codepen ">
-                    <i class="fa fa-codepen "></i>
+                    <i className="fa fa-codepen "></i>
                   </a>
                 </li>
 
                 <li>
                   <a
-                    class="socialIcon "
+                    className="socialIcon "
                     href="https://glitch.com/@Joao-Henrique"
                     target="blank"
                     title="Glitch ">
-                    <i class="fa fa-rocket "></i>
+                    <i className="fa fa-rocket "></i>
                   </a>
                 </li>
 
                 <li>
                   <a
-                    class="socialIcon "
+                    className="socialIcon "
                     href="https://github.com/Joao-Henrique "
                     target="blank"
-                    class="icoGithub "
                     title="Github ">
-                    <i class="fa fa-github "></i>
+                    <i className="fa fa-github "></i>
                   </a>
                 </li>
-                <li class="separator">
-                  <a class="socialIcon">
+                <li className="separator">
+                  <a className="socialIcon">
                     <i>|</i>
                   </a>
                 </li>
               </ul>
             </div>
-            <div class="col-md-6 authorFooter ">
+            <div className="col-md-6 authorFooter ">
               <h6>&copy João Henrique 2017</h6>
             </div>
           </div>
