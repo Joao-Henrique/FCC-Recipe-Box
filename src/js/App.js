@@ -131,8 +131,8 @@ class App extends Component {
         </header>
 
         <div className=" row">
+          <h1>The Best Recipes In Town</h1>
           <div className="col-md-6 projectSection">
-            <h1>The Best Recipes In Town</h1>
 
             {/* ACCORDION FOR THE STORED RECIPES */}
             <div class="wraper">
@@ -223,12 +223,102 @@ class App extends Component {
               bsStyle="success"
               onClick={(event) => this.open("showAdd", currentIndex)}>Add New Recipe</Button>
           </div>
-          <div className="col-md-6">
-            <div className="aboutSection">
-              <h1>About this project</h1>
-            </div>
+          <div class="col-md-6 information">
+            <h2>Project description:</h2>
+            <h5>JavaScript Calculator is a Project made for
+              <a href="https://www.freecodecamp.org/" target="blank">FreeCodeCamp's</a>
+              FrontEnd Certification using HTML, CSS, jQuery and JavaScript. You can use it
+              like you would use a normal calculator.
+            </h5>
+            <h2>Project date:</h2>
+            <h5>March 2017</h5>
           </div>
         </div>
+        <footer>
+          <div class=" footer row ">
+            <div class="col-md-6 socialFooter ">
+              <ul class="social-network social-circle ">
+                <li class="separatorHidden">
+                  <a class="socialIcon">
+                    <i>|</i>
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    class="socialIcon "
+                    href="https://joao-henrique.github.io/JH-Portfolio/"
+                    target="blank"
+                    title="Portfolio">
+                    <i class="fa fa-home "></i>
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    class="socialIcon "
+                    href="https://www.facebook.com/ljoaohenriquel "
+                    target="blank"
+                    class="icoFacebook
+                    "
+                    title="Facebook ">
+                    <i class="fa fa-facebook "></i>
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    class="socialIcon "
+                    href="https://www.linkedin.com/feed/?trk="
+                    target="blank"
+                    class=" icoLinkedin "
+                    title="Linkedin ">
+                    <i class="fa fa-linkedin "></i>
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    class="socialIcon "
+                    href="https://codepen.io/Joao_Henrique/"
+                    target="blank"
+                    title="Codepen ">
+                    <i class="fa fa-codepen "></i>
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    class="socialIcon "
+                    href="https://glitch.com/@Joao-Henrique"
+                    target="blank"
+                    title="Glitch ">
+                    <i class="fa fa-rocket "></i>
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    class="socialIcon "
+                    href="https://github.com/Joao-Henrique "
+                    target="blank"
+                    class="icoGithub "
+                    title="Github ">
+                    <i class="fa fa-github "></i>
+                  </a>
+                </li>
+                <li class="separator">
+                  <a class="socialIcon">
+                    <i>|</i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-6 authorFooter ">
+              <h6>&copy João Henrique 2017</h6>
+            </div>
+          </div>
+        </footer>
       </div>
     );
   }
