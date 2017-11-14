@@ -172,7 +172,7 @@ class App extends Component {
                   <ControlLabel>Recipe Name</ControlLabel>
                   <FormControl
                     type="text"
-                    value={localStorage.recipes[currentIndex].recipeName}
+                    value={"this.state.recipes.recipeName"}
                     placeholder="Enter recipe name"
                     onChange={(event) => this.updateRecipeName(event.target.value, currentIndex)}></FormControl>
                 </FormGroup>
@@ -186,8 +186,7 @@ class App extends Component {
                 </FormGroup>
               </Modal.Body>
               <Modal.Footer>
-                <Button bsStyle="success" onClick={(event) => this.saveNewRecipe()}>Save Recipe</Button>
-                <Button bsStyle="danger" onClick={(event) => this.close()}>Cancel</Button>
+                <Button bsStyle="success" onClick={(event) => this.saveNewRecipe()}>Save</Button>
               </Modal.Footer>
             </Modal>
 
