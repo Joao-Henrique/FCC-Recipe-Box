@@ -172,7 +172,7 @@ class App extends Component {
                   <ControlLabel>Recipe Name</ControlLabel>
                   <FormControl
                     type="text"
-                    value={"this.state.recipes.recipeName"}
+                    value={this.state.recipes.recipeName}
                     placeholder="Enter recipe name"
                     onChange={(event) => this.updateRecipeName(event.target.value, currentIndex)}></FormControl>
                 </FormGroup>
