@@ -119,7 +119,7 @@ class App extends Component {
     console.log(this.state);
   }
 
-  //////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////
   render() {
     const {recipes, newestRecipe, currentIndex} = this.state;
     return (
@@ -186,7 +186,7 @@ class App extends Component {
                 </FormGroup>
               </Modal.Body>
               <Modal.Footer>
-                <Button bsStyle="success" onClick={(event) => this.saveNewRecipe()}>Save</Button>
+                <Button bsStyle="success" onClick={(event) => this.close()}>Close</Button>
               </Modal.Footer>
             </Modal>
 
