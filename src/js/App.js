@@ -29,7 +29,7 @@ class App extends Component {
   }
 
   // CLOSE MODAL FUNCTION
-  close = () => {
+  close = (state, currentIndex) => {
     if (this.state.showAdd) {
       this.setState({showAdd: false})
     } else if (this.state.showEdit) {
@@ -39,19 +39,21 @@ class App extends Component {
 
   // SAVE NEW RECIPE FUNCTION
   saveNewRecipe() {
-    let recipes = this
-      .state
-      .recipes
-      .slice();
-    recipes.push({recipeName: this.state.newestRecipe.recipeName, ingredients: this.state.newestRecipe.ingredients});
-    localStorage.setItem("recipes", JSON.stringify(recipes));
-    this.setState({recipes});
-    this.setState({
-      newestRecipe: {
-        recipeName: "",
-        ingredients: []
-      }
-    })
+    if (this.state.newestRecipe.recipeName && this.state.newestRecipe.ingredients) {
+      let recipes = this
+        .state
+        .recipes
+        .slice();
+      recipes.push({recipeName: this.state.newestRecipe.recipeName, ingredients: this.state.newestRecipe.ingredients});
+      localStorage.setItem("recipes", JSON.stringify(recipes));
+      this.setState({recipes});
+      this.setState({
+        newestRecipe: {
+          recipeName: "",
+          ingredients: []
+        }
+      })
+    }
     this.close();
   }
 
@@ -104,24 +106,73 @@ class App extends Component {
   /////////////////////////////////////////////////////////////
 
   componentWillMount() {
-    this.setState({
-      recipe: {
-        recipeName: "Bolonhesa",
-        ingredients: ["one", "two", "thre"]
+    console.log(JSON.parse(localStorage.getItem("recipes")));
+    let recipes = [
+      {
+        recipeName: "Easy-Peasy Ravioli Gratin",
+        ingredients: [
+          "Onion",
+          "Vegetable Stock Concentrate",
+          "Spinach and Ricotta Ravioli",
+          "Parmesan Cheese",
+          "Poblano Pepper",
+          "Spinach"
+        ]
+      }, {
+        recipeName: "Pork Carnitas Tacos",
+        ingredients: [
+          "Red Onion",
+          "Lime",
+          "Ground Pork",
+          "Tomato Paste",
+          "Poblano Pepper",
+          "White Wine Vinegar",
+          "Flour Tortillas"
+        ]
+      }, {
+        recipeName: "Melty Monterey Jack Burgers",
+        ingredients: [
+          "Garlic",
+          "Lime",
+          "Balsamic Vinegar",
+          "Dried Oregano",
+          "Monterey Jack Cheese",
+          "WGround Beef",
+          "Potato Hamburger Bun"
+        ]
+      }, {
+        recipeName: "Chicken Pineapple Quesadillas",
+        ingredients: [
+          "Pineapple",
+          "Grape Tomatoes",
+          "Flour Tortillas",
+          "Green Bell Pepper",
+          "Chicken Breast",
+          "Southwest Blend Spice",
+          "Mozzarella Cheese"
+        ]
       }
-    })
-  }
+    ];
+    if (JSON.parse(localStorage.getItem("recipes") == null)) {
+      localStorage.setItem("recipes", JSON.stringify(recipes));
+      this.setState({recipes});
+    }
+  };
 
   componentDidMount() {
+
     let recipes = JSON.parse(localStorage.getItem("recipes"));
     this.setState({recipes});
+
     console.log(recipes);
     console.log(this.state);
   }
 
   /////////////////////////////////////////////////////////////
   render() {
+
     const {recipes, newestRecipe, currentIndex} = this.state;
+
     return (
       <div className="App">
         <header className="App-header">
@@ -130,7 +181,9 @@ class App extends Component {
         </header>
 
         <div className=" row">
-          <h1>The Best Recipes In Town</h1>
+          <h1>
+            The Best Recipes In Town
+          </h1>
           <div className="col-md-6 projectSection">
 
             {/* ACCORDION FOR THE STORED RECIPES */}
@@ -155,7 +208,7 @@ class App extends Component {
                     </div>
                     <ButtonToolbar>
                       <Button bsStyle="danger" onClick={(event) => this.deleteRecipe(index)}>Delete Recipe</Button>
-                      <Button bsStyle="warning" onClick={(event) => this.open("showEdit", index)}>Edit Recipe</Button>
+                      <Button bsStyle="default" onClick={(event) => this.open("showEdit", index)}>Edit Recipe</Button>
                     </ButtonToolbar>
                   </Panel>
                 ))}
@@ -182,6 +235,7 @@ class App extends Component {
                     type="textarea"
                     value={recipes.ingredients}
                     componentClass="textarea"
+                    placeholder='Enter ingredients separated by ","'
                     onChange={(event) => this.updateIngredients(event.target.value.split(","), currentIndex)}></FormControl>
                 </FormGroup>
               </Modal.Body>
@@ -228,10 +282,14 @@ class App extends Component {
           <div className="col-md-6 information">
             <h2>Project description:</h2>
             <h5>Recipe Box is a Project made for
-              <a href="https://www.freecodecamp.org/" target="blank">FreeCodeCamp's</a>
-              Data Visualization Certification using React. You can add, edit and delete
-              recipes. The recipes are stored in the browser's local storage so you can
-              restart the browser and they won't disapear.
+              <a href="https://www.freecodecamp.org/" target="blank">
+                FreeCodeCamp's
+              </a>
+              Data Visualization Certification using React and React-Bootstrap. You can add,
+              edit and delete recipes. The recipes are stored in the browser's local storage
+              so you can restart the browser and they won't disappear. Also, if you clear the
+              local storage, the Recipe Box will get repopulated with the original recipes, to
+              make sure you have ideas for your next meal.
             </h5>
             <h2>Project date:</h2>
             <h5>November 2017</h5>
@@ -252,7 +310,7 @@ class App extends Component {
                 <li>
                   <a
                     className="socialIcon "
-                    href="https://joao-henrique.github.io/JH-Portfolio/"
+                    href="https://joao-henrique.github.io/JH-Website/"
                     target="blank"
                     title="Portfolio">
                     <i className="fa fa-home "></i>
@@ -312,10 +370,10 @@ class App extends Component {
                 <li>
                   <a
                     className="socialIcon "
-                    href="https://github.com/Joao-Henrique "
+                    href="https://stackoverflow.com/users/8425954/jo%C3%A3o-henrique "
                     target="blank"
                     title="Stack Overflow ">
-                    <i class="fa fa-stack-overflow "></i>
+                    <i className="fa fa-stack-overflow "></i>
                   </a>
                 </li>
                 <li className="separator">
